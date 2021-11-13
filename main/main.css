@@ -1,0 +1,21 @@
+.slides{
+    animation: fadeIn 10s infinite;
+}
+
+@keyframes fadeIn {
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 0;}
+}
+
+.dot{
+    height: 25px;
+    width: 25px;
+    border: 2px solid #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.active{
+    background-color: #bbb;
+}

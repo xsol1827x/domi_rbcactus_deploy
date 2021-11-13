@@ -1,0 +1,194 @@
+<html>
+<title>Rabbit Plants</title>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+</head>
+
+<body>
+
+
+    <!--사이트 네비게이션-->
+    <nav class="top-nav">
+        <a onclick="location.href='index.html'"><img class="nav-image" src="./img/plantapp_logo_W.png"> </a>
+        <ul class="nav-list">
+            <li>
+                <a onclick="location.href='src/results/allplants.html'">Plants</a>
+            </li>
+            <li>
+                <a onclick="location.href='src/index.html'">Plants Quiz</a>
+            </li>
+            <li>
+                <a id="diary" onclick="location.href='./diary/diary.html'">Diary</a>
+            </li>
+        </ul>
+        <button class="button-nav-logout">Log out</button>
+        <a class="nav-mobile-menu-button-a" href="#nav-mobile-menu">
+            <img class="nav-mobile-menu-button" src="./img/hambuger-menu.png">
+        </a>
+    </nav>
+    <!--로그인창으로 가는 버튼-->
+    <button class="button-login-open" type="button" onclick="location.href='login/login.html'">
+        Log in
+    </button>
+
+    <!--모바일 메뉴-->
+    <div class="nav-mobile-menu" id="nav-mobile-menu">
+        <a href="#a" class="nav-mobile-menu-close">
+            <img src="./img/icon-close.png">
+            <ul>
+                <li>
+                    <a onclick="location.href='index.html'">Home</a>
+                </li>
+                <li>
+                    <a onclick="location.href='src/results/allplants.html'">Plants</a>
+                </li>
+                <li>
+                    <a onclick="location.href='src/index.html'">Plants Quiz</a>
+                </li>
+                <li>
+                    <a onclick="location.href='diary/diary.html'">Diary</a>
+                </li>
+                <li>
+                    <a onclick="clickLogOut()">Log out</a>
+                </li>
+            </ul>
+    </div>
+    </div>
+    <!--모바일네비게이션 딤드-->
+    <div class="nav-mobile-menu-dim"></div>
+
+    <!-- 배너 -->
+    <div class="banner">
+
+        <!-- 배너 메인 타이틀-->
+        <div class="banner-title">
+            What is your Plant?
+            <p class="banner-text">
+                Want to find out what indoor plant is the best for you? Let us help you discover your new indoor buddy!
+            </p>
+        </div>
+
+        <!-- 배너 리스트 -->
+        <div class="banner-list" style="background-image: url(img/main-banner-image-1.png);"></div>
+        <div class="banner-list" style="background-image: url(img/main-banner-image-2.png);"></div>
+        <div class="banner-list" style="background-image: url(img/main-banner-image-3.png);"></div>
+
+        <!-- 배너 페이징 -->
+        <div class="banner-dot-outer">
+            <div class="banner-dots"></div>
+            <div class="banner-dots"></div>
+            <div class="banner-dots"></div>
+        </div>
+
+    </div>
+    <div class="wrapper">
+        <!--컨텐츠 영역 제목 -1-->
+
+        <div class="main-contens-container-title">
+            <img class="main-contens-container-title-icon" src="img/plantapp_logo_nav.png">
+            Plants
+        </div>
+
+        <!--메인 컨텐츠 1 - 대표 식물 리스트-->
+        <div class="about-main-contents-summary">
+            <div class="character-top-margin"></div>
+            <div class="about-main-contents-summary-card">
+                <a onclick="location.href='./src/results/resultone.html'">
+                    <img src="img/plants-image-1.png">
+                </a>
+                <div class="about-main-contents-character-title">Rabbits Cactus</div>
+            </div>
+            <div class="about-main-contents-summary-card">
+                <a onclick="location.href='./src/results/resulttwo.html'">
+                    <img src="img/plants-image-2.png">
+                </a>
+                <div class="about-main-contents-character-title">Devil's ivy</div>
+            </div>
+            <div class="about-main-contents-summary-card">
+                <a onclick="location.href='./src/results/resultthree.html'">
+                    <img src="img/plants-image-3.png">
+                </a>
+                <div class="about-main-contents-character-title">Rubber plant</div>
+            </div>
+        </div>
+        <div class="character-top-margin"></div>
+
+        <!--컨텐츠 영역 제목 -2 - Plants quiz-->
+        <div class="main-contens-container-title">
+            <img class="main-contens-container-title-icon" src="img/plantapp_logo_nav.png">
+            Plants Quiz
+        </div>
+        <div class="index-image">
+            <img src="img/index_image_1.png">
+        </div>
+        <div class="character-top-margin"></div>
+
+        <!--컨텐츠 영역 제목 -3 - Plants Daiary-->
+        <div class="main-contens-container-title">
+            <img class="main-contens-container-title-icon" src="img/plantapp_logo_nav.png">
+            My Plants Daiary
+        </div>
+        <div class="index-image">
+            <img src="img/index_image_2.png">
+        </div>
+    </div>
+
+    <div class="character-top-margin"></div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-title">Project Domi</div>
+            <ui class="footer-icon">
+                <li>
+                    <a href="https://github.com/xsol1827x/domi_rabbitcactus/tree/main">
+                        <img src="img/icon-github.png">
+                    </a>
+                </li>
+                <li>
+                    <a href='mailto:domi.crop@gmail.com'>
+                        <img src="img/icon-mail.svg">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/project.domi/">
+                        <img src="img/icon-instagram.svg">
+                    </a>
+                </li>
+
+            </ui>
+        </div>
+    </footer>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyB3w4FtXFVmgfZrIGMQyH23wPg7XXalnN0",
+            authDomain: "domi-plant-db.firebaseapp.com",
+            databaseURL: "https://domi-plant-db-default-rtdb.firebaseio.com",
+            projectId: "domi-plant-db",
+            storageBucket: "domi-plant-db.appspot.com",
+            messagingSenderId: "598097665232",
+            appId: "1:598097665232:web:e4e2c3b3a661e448f412d5",
+            measurementId: "G-YRHX2M79RZ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        db.settings({ timestampsInSnapshots: true })
+
+        //make auth and firestore references
+        const auth = firebase.auth();
+    </script>
+    <script src="main.js"></script>
+</body>
+
+</html>

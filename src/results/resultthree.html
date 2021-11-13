@@ -1,0 +1,156 @@
+<html>
+    <title>Rubber Plant</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../style/style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script> 
+    </head>
+    <body>
+        
+        
+        <!--사이트 네비게이션-->
+        <nav class="top-nav">
+            <a onclick="location.href='../../main.html'"><img class="nav-image" src="../../img/plantapp_logo_W.png"> </a>
+            <ul class="nav-list">
+                <li>
+                    <a onclick="location.href='../../main.html'">Home</a>
+                </li>
+                <li>
+                    <a onclick="location.href='../../src/index.html'">Plants Quiz</a>
+                </li>
+                <li>
+                    <a id="diary" onclick="location.href='../../diary/diary.html'">Diary</a>
+                </li>
+            </ul>
+            <button class="button-nav-logout">Log out</button>
+            <a class="nav-mobile-menu-button-a" href="#nav-mobile-menu">
+                <img class="nav-mobile-menu-button" src="../../img/hambuger-menu.png">
+            </a>
+        </nav>
+        <!--로그인창으로 가는 버튼-->
+        <button class="button-login-open" type="button" onclick="location.href='#login-banner'">
+            Log in
+        </button>
+        <!--로그인 팝업창-->
+        <div class="login-banner" id="login-banner">
+            <form class="login-form">
+            <div class="login-title">Log in</div>
+            <div class="login-text">Email</div>
+            <input type="text" class="login-textbox" id="email" placeholder="E-mail" required>
+            <div class="login-text">Password</div>
+            <input type="password" class="login-textbox" id="pass" placeholder="password" required>
+            <button type="submit" class="button-login">Log in</button>
+            <button class="button-login-close" type="button" onclick="location.href='#a'">Close</button>
+        </form>
+        </div>
+        <!--모바일 메뉴-->
+        <div class="nav-mobile-menu" id="nav-mobile-menu">
+            <a href="#a" class="nav-mobile-menu-close">
+                <img src="../../img/icon-close.png">
+                <ul>
+                    <li>
+                        <a onclick="location.href='../../main.html'">Home</a>
+                    </li>
+                    <li>
+                        <a onclick="location.href='../../src/results/allplants.html'">Plants</a>
+                    </li>
+                    <li>
+                        <a onclick="location.href='../../src/index.html'">Plants Quiz</a>
+                    </li>
+                    <li>
+                        <a onclick="location.href='../../diary/diary.html'">Diary</a>
+                    </li>
+                    <li>
+                        <a onclick="clickLogOut()">Log out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--모바일네비게이션 딤드-->
+        <div class="nav-mobile-menu-dim"></div>
+
+        <!-- 배너 메인 타이틀-->
+        <div class="about-top-title">
+            <div class="about-top-title-1">About</div>
+            <div class="about-top-title-2">Rubber Tree</div>
+        </div>
+        <!-- 탑 이미지 -->
+        <div class="about-top">
+            <div class="about-top-image" style="background-image: url(../../img/top-image-3.png);">
+        </div>
+        <!--본문-->
+        <div class="about-main-contents">
+            <div class="character-detail-top">             
+                <div class="character-detail-top-border"></div>
+                <div class="character-detail-top-image-container">
+                    <img class="character-detail-top-image" src="../../img/plants-image-3.png">
+                </div>
+                <h2 class="h2">
+                    <div class="h-under-line-green">Rubber Tree</div>
+                </h2>
+                
+                <p>
+                    In botany, succulent plants, also known as succulents, are plants with parts that are thickened, fleshy, and engorged, usually to retain water in arid climates or soil conditions. It is a characteristic that is not used scientifically for the definition of most families and genera of plants because it often can be used as an accurate characteristic only at the single species level. The word succulent comes from the Latin word sucus, meaning 'juice', or 'sap'.[1] Succulent plants may store water in various structures, such as leaves and stems. Some definitions also include roots, thus geophytes that survive unfavorable periods by dying back to underground storage organs may be regarded as succulents. In horticultural use, the term succulent is sometimes used in a way that excludes plants that botanists would regard as succulents, such as cacti. Succulents are often grown as ornamental plants because of their striking and unusual appearance, as well as their ability to thrive with relatively minimal care.
+
+Many plant families have multiple succulents species found within them (more than 25 plant families).[2] In some families, such as Aizoaceae, Cactaceae, and Crassulaceae, most species are succulents. The habitats of these water-preserving plants are often in areas with high temperatures and low rainfall, such as deserts. Succulents have the ability to thrive on limited water sources, such as mist and dew, which makes them equipped to survive in an ecosystem that contains scarce water sources.
+                </p>
+            </div>
+        </div>
+            
+
+        <!--푸터영역-->
+        <div class="character-top-margin"></div>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-title">Project Domi</div>
+                <ui class="footer-icon">
+                    <li>
+                        <a href="https://github.com/xsol1827x/domi_rabbitcactus/tree/main">
+                            <img src="../../img/icon-github.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href='mailto:domi.crop@gmail.com'>
+                            <img src="../../img/icon-mail.svg">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/project.domi/">
+                            <img src="../../img/icon-instagram.svg">
+                        </a>
+                    </li>
+            
+                </ui>
+            </div>
+        </footer>
+
+        <script>
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = {
+              apiKey: "AIzaSyB3w4FtXFVmgfZrIGMQyH23wPg7XXalnN0",
+              authDomain: "domi-plant-db.firebaseapp.com",
+              databaseURL: "https://domi-plant-db-default-rtdb.firebaseio.com",
+              projectId: "domi-plant-db",
+              storageBucket: "domi-plant-db.appspot.com",
+              messagingSenderId: "598097665232",
+              appId: "1:598097665232:web:e4e2c3b3a661e448f412d5",
+              measurementId: "G-YRHX2M79RZ"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+            db.settings({timestampsInSnapshots:true})
+    
+            //make auth and firestore references
+            const auth = firebase.auth();
+          </script>
+          <script src="resultpage.js"></script>
+    </body>
+</html>

@@ -1,0 +1,386 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What plant are you?</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+</head>
+
+<body>
+    </head>
+
+    <body>
+        <!--사이트 네비게이션-->
+        <nav class="top-nav">
+            <a onclick="location.href='../index.html'"><img class="nav-image" src="../img/plantapp_logo_W.png"> </a>
+            <ul class="nav-list">
+                <li>
+                    <a onclick="location.href='../index.html'">Home</a>
+                </li>
+                <li>
+                    <a onclick="location.reload()">Plants Quiz</a>
+                </li>
+                <li>
+                    <a id="diary" onclick="location.href='../diary/diary.html'">Diary</a>
+                </li>
+            </ul>
+            <button class="button-nav-logout">Log out</button>
+            <a class="nav-mobile-menu-button-a" href="#nav-mobile-menu">
+                <img class="nav-mobile-menu-button" src="../img/hambuger-menu.png">
+            </a>
+        </nav>
+        <!--로그인창으로 가는 버튼-->
+        <button class="button-login-open" type="button" onclick="location.href='../login/login.html'">
+            Log in
+        </button>
+
+        <!--모바일 메뉴-->
+        <div class="nav-mobile-menu" id="nav-mobile-menu">
+            <a href="#a" class="nav-mobile-menu-close">
+                <img src="../img/icon-close.png">
+                <ul>
+                    <li>
+                        <a onclick="location.href='../index.html'">Home</a>
+                    </li>
+                    <li>
+                        <a onclick="location.href='../src/results/allplants.html'">Plants</a>
+                    </li>
+                    <li>
+                        <a onclick="location.href='../src/index.html'">Plants Quiz</a>
+                    </li>
+                    <li>
+                        <a onclick="location.href='../diary/diary.html'">Diary</a>
+                    </li>
+                    <li>
+                        <a onclick="clickLogOut()">Log out</a>
+                    </li>
+                </ul>
+        </div>
+        </div>
+        <!--모바일네비게이션 딤드-->
+        <div class="nav-mobile-menu-dim"></div>
+        <!--메인 컨텐츠-->
+        <div class="wrapper">
+            <!--페이지 타이틀 이미지-->
+            <div class="character-detail-top">
+                <div class="character-detail-top-logo-container">
+                    <img class="character-detail-top-logo" src="../img/plantapp_logo_top.png">
+                </div>
+                <div class="character-detail-top-logotype-container">
+                    <img class="character-detail-top-logotype" src="../img/plantapp_logotype.png">
+                </div>
+            </div>
+            <!--퀴즈영역-->
+            <!--퀴즈 제목-->
+            <div class="main-contens-container-title">
+                <img class="main-contens-container-title-icon" src="../img/plantapp_logo_nav.png">
+                question
+            </div>
+
+            <form>
+                <div class="quiz">
+                    <div class="quiz-question">1. What is your favourite animal?</div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="1">
+                        <div class="quiz-answer">Rabbit</div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="2">
+                        <div class="quiz-answer">Swan</div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="3">
+                        <div class="quiz-answer">Elephant</div>
+                    </div>
+                </div>
+
+                <div class="quiz" style="display: none;">
+                    <div class="quiz-question">
+                        2. You fell asleep under a tree. As you slowly wake up, you catch someone passing by you. Who
+                        could it be?
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="1">
+                        <div class="quiz-answer">
+                            A rabbit rushing past holding a pocket watch.
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="2">
+                        <div class="quiz-answer">
+                            A mystical, strange cat
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="3">
+                        <div class="quiz-answer">
+                            A blonde girl in a sky-blue dress
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz" style="display: none;">
+                    <div class="quiz-question">
+                        3. You finally finished that difficult task you were working on! What would you like to receive
+                        as your reward?
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="1">
+                        <div class="quiz-answer">
+                            A small, cute accessory
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="2">
+                        <div class="quiz-answer">
+                            A delicious, fascinating meal
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="3">
+                        <div class="quiz-answer">
+                            A nice pillow to help you relax.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz" style="display: none;">
+                    <div class="quiz-question">4.You find yourself wondering through a mysterious forest, there is a
+                        tree up ahead! What kind of tree do you see?</div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="1">
+                        <div class="quiz-answer">
+                            A small berry tree.
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="2">
+                        <div class="quiz-answer">
+                            A luscious apple tree.
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="3">
+                        <div class="quiz-answer">
+                            A big tree you can lean on to relax.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz" style="display: none;">
+                    <div class="quiz-question">5. You are in a dream. Where do you find yourself?</div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="1">
+                        <div class="quiz-answer">
+                            An oasis in the middle of a desert
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="2">
+                        <div class="quiz-answer">
+                            A mystical, abandoned castle.
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="3">
+                        <div class="quiz-answer">
+                            A strange forest with lots of tall trees
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz" style="display: none;">
+                    <div class="quiz-question">6. What is the one place you want to decorate?</div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="1">
+                        <div class="quiz-answer">
+                            The desk
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="2">
+                        <div class="quiz-answer">
+                            The house walls.
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="3">
+                        <div class="quiz-answer">
+                            The living room
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz" style="display: none;">
+                    <div class="quiz-question">7. When is the best time to drink a glass of cold water?</div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="1">
+                        <div class="quiz-answer">
+                            Lunchtime
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="2">
+                        <div class="quiz-answer">
+                            In the morning
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="3">
+                        <div class="quiz-answer">
+                            Dinnertime
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz" style="display: none;">
+                    <div class="quiz-question">8. Where do you spend most of your time in the house?</div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="1">
+                        <div class="quiz-answer">
+                            The desk
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="2">
+                        <div class="quiz-answer">
+                            The bed
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="3">
+                        <div class="quiz-answer">
+                            The sofa
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz" style="display: none;">
+                    <div class="quiz-question">9. You have some free time on the weekend! What is your favourite
+                        activity to do?</div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="1">
+                        <div class="quiz-answer">
+                            Sit down on the desk, play some games!
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="2">
+                        <div class="quiz-answer">
+                            Go exploring in the outskirts of town for some antique buildings.
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="3">
+                        <div class="quiz-answer">
+                            Go to a furniture showroom to look at interior décor.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz" style="display: none;">
+                    <div class="quiz-question">10. What is one of the most important aspect you consider in life?</div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="1">
+                        <div class="quiz-answer">
+                            Love
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="2">
+                        <div class="quiz-answer">
+                            Friendship
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="3">
+                        <div class="quiz-answer">
+                            Happiness
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz" style="display: none;">
+                    <div class="quiz-question">11. What do you like to do to brighten up your mood?</div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="1">
+                        <div class="quiz-answer">
+                            A date with your loved one
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="2">
+                        <div class="quiz-answer">
+                            Getting drinks with your friend
+                        </div>
+                    </div>
+                    <div class="quiz-radio">
+                        <input type="radio" name="answer" value="3">
+                        <div class="quiz-answer">
+                            A small, leisurely activity that you enjoy
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="quiz-button-container">
+                <button class="quiz-button" id="prev">Prev</button>
+                <button class="quiz-button" id="next">Next</button>
+            </div>
+        </div>
+        <!--푸터영역-->
+        <div class="character-top-margin"></div>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-title">Project Domi</div>
+                <ui class="footer-icon">
+                    <li>
+                        <a href="https://github.com/xsol1827x/domi_rabbitcactus/tree/main">
+                            <img src="../img/icon-github.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href='mailto:domi.crop@gmail.com'>
+                            <img src="../img/icon-mail.svg">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/project.domi/">
+                            <img src="../img/icon-instagram.svg">
+                        </a>
+                    </li>
+
+                </ui>
+            </div>
+        </footer>
+
+        <script>
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = {
+                apiKey: "AIzaSyB3w4FtXFVmgfZrIGMQyH23wPg7XXalnN0",
+                authDomain: "domi-plant-db.firebaseapp.com",
+                databaseURL: "https://domi-plant-db-default-rtdb.firebaseio.com",
+                projectId: "domi-plant-db",
+                storageBucket: "domi-plant-db.appspot.com",
+                messagingSenderId: "598097665232",
+                appId: "1:598097665232:web:e4e2c3b3a661e448f412d5",
+                measurementId: "G-YRHX2M79RZ"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+            db.settings({ timestampsInSnapshots: true })
+
+            //make auth and firestore references
+            const auth = firebase.auth();
+        </script>
+        <script src="index.js"></script>
+    </body>
+
+</html>
